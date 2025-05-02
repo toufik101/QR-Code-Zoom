@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My BMW App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+    }
+    .container {
+      max-width: 1600px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      align-items: center;
+      min-height: 100vh;
+      gap: 20px;
+      padding: 20px;
+    }
+    .card_sec {
+      position: relative;
+      padding: 20px;
+      border-radius: 10px;
+      background: linear-gradient(to right, #002F77, #0045ad);
+      color: #fff;
+      width: 400px;
+    }
+    .heading h2 {
+      margin: 0 0 10px;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0.5px #fff;
+    }
+    .heading p {
+      margin-bottom: 40px;
+    }
+    .store {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .playstor {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .playstor img:first-child {
+      width: 200px;
+      height: 50px;
+    }
+    .playstor img.qr-cod {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    .car img {
+      width: 70%;
+    }
+    .qr_zoom {
+      display: none;
+      position: absolute;
+      inset: 0;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.65);
+      z-index: 5;
+    }
+    .qr_zoom img {
+      width: 300px;
+      border: 1px solid #fff;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="container">
+    <!-- Repeat this block for more cards -->
+    <div class="card_sec">
+      <div class="qr_zoom"></div>
+
+      <div class="heading">
+        <h2>My BMW APP</h2>
+        <p>Change Your Electric Vehicle - Now Easier than ever</p>
+      </div>
+
+      <div class="store">
+        <div class="playstor">
+          <img src="./Image/Google_Play_Store_badge_EN.svg.webp" alt="Play Store" />
+          <img class="qr-cod" src="./Image/Screenshot 2025-05-01 193258.png" alt="QR" data-img="./Image/Screenshot 2025-05-01 193258.png" />
+        </div>
+        <div class="playstor">
+          <img src="./Image/images.png" alt="Apple Store" />
+          <img class="qr-cod" src="./Image/Screenshot 2025-05-01 193258.png" alt="QR" data-img="./Image/Screenshot 2025-05-01 193258.png" />
+        </div>
+        <div class="car">
+          <img src="./Image/MINI-Charging-App.webp" alt="BMW App Image" />
+        </div>
+      </div>
+    </div>
+    <!-- End Card -->
+  </section>
+
+  <script>
+    document.querySelectorAll(".qr-cod").forEach(qr => {
+      const qrZoom = qr.closest(".card_sec").querySelector(".qr_zoom");
+
+      qr.addEventListener("mouseenter", () => {
+        qrZoom.innerHTML = `<img src="${qr.dataset.img}" alt="Zoom QR" />`;
+        qrZoom.style.display = "flex";
+        qr.style.opacity = "0.05";
+      });
+
+      qr.addEventListener("mouseleave", () => {
+        qrZoom.style.display = "none";
+        qrZoom.innerHTML = "";
+        qr.style.opacity = "1";
+      });
+    });
+  </script>
+
+</body>
+</html>
